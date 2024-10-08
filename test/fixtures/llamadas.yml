@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  motivo: MyString
+  fecha: 2024-10-08 12:06:14
+
+two:
+  cliente: two
+  motivo: MyString
+  fecha: 2024-10-08 12:06:14

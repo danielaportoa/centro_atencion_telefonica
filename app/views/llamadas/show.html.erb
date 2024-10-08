@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @llamada %>
+
+<div>
+  <%= link_to "Edit this llamada", edit_llamada_path(@llamada) %> |
+  <%= link_to "Back to llamadas", llamadas_path %>
+
+  <%= button_to "Destroy this llamada", @llamada, method: :delete %>
+</div>

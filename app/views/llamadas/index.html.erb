@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Llamadas</h1>
+
+<div id="llamadas">
+  <% @llamadas.each do |llamada| %>
+    <%= render llamada %>
+    <p>
+      <%= link_to "Show this llamada", llamada %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New llamada", new_llamada_path %>

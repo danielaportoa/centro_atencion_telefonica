@@ -1,0 +1,32 @@
+<%= form_with(model: llamada) do |form| %>
+  <% if llamada.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(llamada.errors.count, "error") %> prohibited this llamada from being saved:</h2>
+
+      <ul>
+        <% llamada.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :cliente_id, style: "display: block" %>
+    <%= form.text_field :cliente_id %>
+  </div>
+
+  <div>
+    <%= form.label :motivo, style: "display: block" %>
+    <%= form.text_field :motivo %>
+  </div>
+
+  <div>
+    <%= form.label :fecha, style: "display: block" %>
+    <%= form.datetime_field :fecha %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
