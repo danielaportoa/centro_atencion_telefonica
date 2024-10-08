@@ -1,32 +1,14 @@
-<%= form_with(model: llamada) do |form| %>
-  <% if llamada.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(llamada.errors.count, "error") %> prohibited this llamada from being saved:</h2>
-
-      <ul>
-        <% llamada.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :cliente_id, style: "display: block" %>
-    <%= form.text_field :cliente_id %>
+<%= form_with(model: [cliente, llamada], local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :motivo %>
+    <%= form.select :motivo, Llamada.motivos.keys, { prompt: "Selecciona un motivo" }, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :motivo, style: "display: block" %>
-    <%= form.text_field :motivo %>
+  <div class="form-group">
+    <%= form.label :fecha %>
+    <%= form.datetime_select :fecha, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.datetime_field :fecha %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit "Registrar Llamada", class: "btn btn-primary" %>
 <% end %>
+

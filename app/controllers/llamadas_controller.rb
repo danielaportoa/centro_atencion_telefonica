@@ -3,7 +3,8 @@ class LlamadasController < ApplicationController
 
   # GET /llamadas or /llamadas.json
   def index
-    @llamadas = Llamada.all
+    @cliente = Cliente.find(params[:cliente_id])
+    @llamadas = @cliente.llamadas
   end
 
   # GET /llamadas/1 or /llamadas/1.json
@@ -12,7 +13,8 @@ class LlamadasController < ApplicationController
 
   # GET /llamadas/new
   def new
-    @llamada = Llamada.new
+    @cliente = Cliente.find(params[:cliente_id])
+    @llamada = @cliente.llamadas.new
   end
 
   # GET /llamadas/1/edit
@@ -21,17 +23,23 @@ class LlamadasController < ApplicationController
 
   # POST /llamadas or /llamadas.json
   def create
-    @llamada = Llamada.new(llamada_params)
-
-    respond_to do |format|
-      if @llamada.save
-        format.html { redirect_to @llamada, notice: "Llamada was successfully created." }
-        format.json { render :show, status: :created, location: @llamada }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @llamada.errors, status: :unprocessable_entity }
-      end
+    #@llamada = Llamada.new(llamada_params)
+    @cliente = Cliente.find(params[:cliente_id])
+    @llamada = @cliente.llamadas.new(llamada_params)
+    if @llamada.save
+      redirect_to cliente_llamadas_path(@cliente), notice: 'Llamada registrada con éxito.'
+    else
+      render :new
     end
+    #respond_to do |format|
+      #if @llamada.save
+        #format.html { redirect_to @llamada, notice: "Llamada was successfully created." }
+        #format.json { render :show, status: :created, location: @llamada }
+      #else
+        #format.html { render :new, status: :unprocessable_entity }
+        #format.json { render json: @llamada.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   # PATCH/PUT /llamadas/1 or /llamadas/1.json
